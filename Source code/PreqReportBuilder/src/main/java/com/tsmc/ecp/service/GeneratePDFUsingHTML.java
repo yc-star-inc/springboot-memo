@@ -44,7 +44,7 @@ public class GeneratePDFUsingHTML {
     }
     
     //https://forums.asp.net/t/2171048.aspx?Converting+HTML+Panel+to+PDF
-    
+    //https://kb.itextpdf.com/home/it5kb/examples/page-size
     //https://www.itread01.com/content/1549591945.html
     public void createPdf(
     	    byte[] xml, byte[] html, String baseUri, String dest, String intent)
