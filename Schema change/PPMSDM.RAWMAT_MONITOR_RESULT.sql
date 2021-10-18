@@ -1,0 +1,56 @@
+CREATE TABLE PPMSDM.RAWMAT_MONITOR_RESULT(
+	JOB_ID NUMBER(10,0) NOT NULL,
+	CASE_ID NUMBER(10,0) DEFAULT '0' NOT NULL,
+	FAB_NAME VARCHAR2(10 CHAR) NOT NULL,
+	PHASE_ID VARCHAR2(8 CHAR),
+	SECT_CD VARCHAR2(1024 CHAR),
+	MONITOR_CRI BLOB,
+	RESULT_RAW BLOB,
+	RESULT_PATH BLOB,
+	JOB_STATUS VARCHAR2(4 BYTE) DEFAULT '0' NOT NULL,
+	SUBMIT_FA_RESULT BLOB,
+	MEAS_DATA_TYPE VARCHAR2(10 CHAR),
+	LAST_CHK_DT DATE,
+	MAIN_CRTRN VARCHAR2(64 CHAR),
+	SUB_CRTRN VARCHAR2(64 CHAR),
+	PARM VARCHAR2(128 CHAR),
+	EXEC_HIST BLOB,
+	CREATE_DT DATE,
+ CONSTRAINT PRIMARY_4 PRIMARY KEY (
+    CASE_ID, JOB_ID, MEAS_DATA_TYPE, LAST_CHK_DT
+ ) 
+ ENABLE
+);
+GRANT DELETE, INSERT, SELECT, UPDATE ON PPMSDM.RAWMAT_MONITOR_RESULT TO PPMSAPPL;
+
+create sequence "PPMSDM"."RAWMAT_MONITOR_RESULT_S" 
+    minvalue 1 maxvalue 9999999999 increment by 1 
+    start with 1 cache 20 noorder nocycle nokeep noscale global;
+    
+    
+CREATE OR REPLACE TRIGGER RAWMAT_MONITOR_RESULT_T 
+BEFORE INSERT ON RAWMAT_MONITOR_RESULT 
+FOR EACH ROW
+BEGIN
+  SELECT RAWMAT_MONITOR_RESULT_S.NEXTVAL
+  INTO   :new.job_id
+  FROM   dual;
+END;
+
+-- Insert Date
+INSERT INTO PPMSDM.RAWMAT_MONITOR_RESULT t (t.CASE_ID, t.FAB_NAME, t.JOB_STATUS, t.MEAS_DATA_TYPE, t.LAST_CHK_DT) 
+values(3, 'FAB12', '0', 'FAC', sysdate);
+commit;
+select to_char(t.last_chk_dt, 'yyyy/MM/DD HH24:MI:SS'), t.* from ppmsdm.rawmat_monitor_result t;
+
+-- Select Top N
+select distinct t.case_id FROM PPMSDM.RAWMAT_MONITOR_RESULT t WHERE t.MEAS_DATA_TYPE in ('FAC') and t.job_status in (0) order by t.last_chk_dt
+FETCH FIRST 3 ROWS ONLY; 
+
+select * from ppmsdm.rawmat_monitor_result t
+where t.case_id in (
+    select distinct t.case_id from PPMSDM.RAWMAT_MONITOR_RESULT t 
+    where t.MEAS_DATA_TYPE in ('FAC') and t.job_status in (0) 
+    order by t.last_chk_dt
+    fetch first 3 rows only
+)
