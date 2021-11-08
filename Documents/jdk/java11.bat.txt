@@ -1,0 +1,13 @@
+@echo off
+echo "Setting Java 11 as JAVA_HOME as system environment variable (script must be run as administrator)"
+setx JAVA_HOME "C:\Program Files\java\jdk-11.0.2" /M
+echo Java 11 activated.
+
+
+
+@echo off
+echo "Setting Java 11 as JAVA_HOME as user environment variable"
+set JAVA_HOME=C:\Program Files\java\jdk-11.0.2
+echo Java 11 activated.
+
+

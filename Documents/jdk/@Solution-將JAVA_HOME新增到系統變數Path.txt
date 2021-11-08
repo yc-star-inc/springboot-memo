@@ -1,0 +1,29 @@
+【WINDOWS】通過Powershell將JAVA_HOME新增到系統變數Path
+
+解決辦法
+首先，您可以使用以下語法來訪問PowerShell中的environememnt變數:
+
+$env:Path
+
+因此，您可以編寫:
+[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::Machine) + "$($Env:JAVA_HOME)\bin", [EnvironmentVariableTarget]::Machine)
+
+這是一個例子:
+PS C:\> [Environment]::SetEnvironmentVariable("JAVA_HOME", "c:\temp")
+PS C:\> $env:JAVA_HOME
+c:\temp
+
+PS C:\> [Environment]::SetEnvironmentVariable("TEST", "$($Env:JAVA_HOME);c\docs")
+
+PS C:\> $env:TEST
+c:\temp;c\docs
+
+這是你想要的 ？
+# example of adding a path to PATH
+[System.Environment]::SetEnvironmentVariable("PATH", $Env:Path + ";$($Env:JAVA_HOME)\bin", "User")
+
+請注意:$Env:Path是系統路徑和使用者路徑的合併。根據執行此命令的使用者，生成的路徑將包含不同的條目(使用者配置檔案條目和原始系統條目)。如果您只想更改系統，則應使用:
+$oldSysPath = (Get-Itemproperty -path 'hklm:\system\currentcontrolset\control\session manager\environment' -Name Path).Path
+$newSysPath = $oldSysPath + ";$($Env:JAVA_HOME)\bin"
+
+Set-ItemProperty -path 'hklm:\system\currentcontrolset\control\session manager\environment' -Name Path -Value $newSysPath 

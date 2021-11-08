@@ -1,0 +1,14 @@
+@echo off
+echo "Setting Java 8 as JAVA_HOME as system environment variable (script must be run as administrator)"
+setx JAVA_HOME "C:\Program Files\Android\Android Studio\jre" /M
+echo Java 8 activated.
+
+
+
+
+@echo off
+echo "Setting Java 8 as JAVA_HOME as user environment variable"
+set JAVA_HOME=C:\Program Files\Android\Android Studio\jre
+echo Java 8 activated.
+
+
