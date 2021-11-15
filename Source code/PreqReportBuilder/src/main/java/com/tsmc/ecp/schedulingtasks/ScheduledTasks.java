@@ -1,6 +1,8 @@
 package com.tsmc.ecp.schedulingtasks;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.Date;
 
 import org.slf4j.Logger;
@@ -39,5 +41,23 @@ public class ScheduledTasks {
 	@Scheduled(cron = "0 0/1 * * * ?") // cron接受cron表示式，根據cron表示式確定定時規則
 	public void testCron() {
 		logger.info("===cron: 時間:{}", dateFormat.format(new Date()));
+	}
+
+	@Scheduled(cron = "0 0/1 * * * ?") // cron接受cron表示式，根據cron表示式確定定時規則
+	public void doConfigQualityCheck() {
+		logger.info("===cron: 時間:{}", dateFormat.format(new Date()));
+
+		/// fabPlantCd
+		/// matNo
+		/// monCriteria1
+		/// monCriteria2
+		/// subCriteria1
+		/// subCriteria2
+		/// result
+		/// message
+		Timestamp startTs = Timestamp.from(Instant.now());
+		logger.info("===cron: 時間(Instant.now()):{}", dateFormat.format(startTs));
+
+
 	}
 }
