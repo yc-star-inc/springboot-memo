@@ -4,7 +4,9 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
+import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,6 +67,11 @@ public class ScheduledTasks {
 		Timestamp nowTs = Timestamp.from(Instant.now());
 		//if(nowTs.isBefore())
 
+	}
+
+	private String getMapValue(Map<String, String> source, String key) {
+		if(source.containsKey(key)) return source.get(key);
+		else return StringUtils.EMPTY;
 	}
 
 	private Timestamp dateToTimestamp(Date dt) {
