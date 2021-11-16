@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -58,6 +59,21 @@ public class ScheduledTasks {
 		Timestamp startTs = Timestamp.from(Instant.now());
 		logger.info("===cron: 時間(Instant.now()):{}", dateFormat.format(startTs));
 
+		Timestamp usedT = Timestamp.from(Instant.now());
+		Integer caseCloseDelay = 30; // mins
+		Timestamp closeTime = (Timestamp) DateUtils.addMinutes(new Date(usedT.getTime()), caseCloseDelay);
+		Timestamp nowTs = Timestamp.from(Instant.now());
+		//if(nowTs.isBefore())
 
+	}
+
+	private Timestamp dateToTimestamp(Date dt) {
+		// getting the object of the Timestamp class
+		Timestamp ts = new Timestamp(date.getTime());
+		return ts;
+	}
+	private Timestamp now() {
+		Date date = new Date();
+		return dateToTimestamp(date);
 	}
 }
