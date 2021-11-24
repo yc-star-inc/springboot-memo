@@ -63,8 +63,10 @@ public class KpiCheckScheduledTasks {
 
 		Timestamp usedT = Timestamp.from(Instant.now());
 		Integer caseCloseDelay = 30; // mins
-		Timestamp closeTime = (Timestamp) DateUtils.addMinutes(new Date(usedT.getTime()), caseCloseDelay);
+		Timestamp closeTime
+				= new Timestamp(DateUtils.addMinutes(new Date(usedT.getTime()), caseCloseDelay).getTime());
 		Timestamp nowTs = Timestamp.from(Instant.now());
+		logger.info("===cron: 時間(closeTime()):{}", dateFormat.format(closeTime));
 		//if(nowTs.isBefore())
 
 	}

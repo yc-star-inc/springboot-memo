@@ -63,10 +63,10 @@ public class ScheduledTasks {
 
 		Timestamp usedT = Timestamp.from(Instant.now());
 		Integer caseCloseDelay = 30; // mins
-		Timestamp closeTime = (Timestamp) DateUtils.addMinutes(new Date(usedT.getTime()), caseCloseDelay);
-		Timestamp nowTs = Timestamp.from(Instant.now());
-		//if(nowTs.isBefore())
+		Timestamp closeTime = new Timestamp(DateUtils.addMinutes(new Date(usedT.getTime()), caseCloseDelay).getTime());
 
+		//if(nowTs.isBefore())
+		logger.info("===cron: 時間(closeTime.now()):{}", dateFormat.format(closeTime));
 	}
 
 	private String getMapValue(Map<String, String> source, String key) {
