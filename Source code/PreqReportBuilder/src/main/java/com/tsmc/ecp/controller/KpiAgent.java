@@ -1,17 +1,17 @@
 package com.tsmc.ecp.controller;
 
-public class KpiAgent<RawmatPreBatchCase> {
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-    public String doKpiCheckByCase(RawmatPreBatchCase _curKpiBatchCase) {
+@RestController
+public class KpiAgent {
 
-        String rtnResult = "";
-
-
-
-
-        return rtnResult;
+    @GetMapping("/greeting")
+    public String greeting(@RequestParam(value = "name", defaultValue = "World")String _name) {
+        String response = "Welcome to join us, %s";
+        return String.format(response, _name);
     }
-
 
 
 
