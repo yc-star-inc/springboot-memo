@@ -2,22 +2,18 @@ package com.tsmc.ecp.model;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tsmc.ecp.schedulingtasks.ScheduledTasks;
-import org.junit.jupiter.api.Test;
+import com.tsmc.ecp.preq.strategy.SpcBySetting;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class ReqInputObjectTest {
 
-    private static Logger log;
-
+    private static Logger logger;
     static {
-        log = LoggerFactory.getLogger(ReqInputObjectTest.class);
+        logger = LoggerFactory.getLogger(SpcBySetting.class);
     }
 
     //@Test
@@ -39,6 +35,7 @@ class ReqInputObjectTest {
         ObjectMapper mapper = new ObjectMapper();
         String fRslt = mapper.writeValueAsString(reqObj);
 
+        logger.info(String.format("Result: %s", fRslt));
 
     }
 
