@@ -1,4 +1,4 @@
 
 
 ################################
-GET http://localhost:808/greeting?name=Kitty
+GET http://localhost:8080/greeting?name=Kitty

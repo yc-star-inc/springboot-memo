@@ -20,7 +20,7 @@ class ReqInputObjectTest {
         log = LoggerFactory.getLogger(ReqInputObjectTest.class);
     }
 
-    @Test
+    //@Test
     public void test() throws JsonProcessingException {
         ReqInputObject.Element user1
                 = new ReqInputObject.Element("Andy", "12208", "173");
