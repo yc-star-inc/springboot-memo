@@ -15,19 +15,19 @@ public class MediaStrategyController {
         SocialMediaContext context = new SocialMediaContext();
 
         // Setting Facebook strategy.
-        context.setSocialmediaStrategy(new FacebookStrategy());
+        context.setSocialMediaStrategy(new FacebookStrategy());
         context.connect("Lokesh");
 
         System.out.println("====================");
 
         // Setting Twitter strategy.
-        context.setSocialmediaStrategy(new TwitterStrategy());
+        context.setSocialMediaStrategy(new TwitterStrategy());
         context.connect("Lokesh");
 
         System.out.println("====================");
 
         // Setting GooglePlus strategy.
-        context.setSocialmediaStrategy(new GooglePlusStrategy());
+        context.setSocialMediaStrategy(new GooglePlusStrategy());
         context.connect("Lokesh");
 
     }

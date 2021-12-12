@@ -16,7 +16,17 @@ public class DefectBySetting implements IDataPackageStrategy{
     }
 
     @Override
-    public void connectTo(String friendName) {
+    public void getConfiguration(String friendName) {
+
+    }
+
+    @Override
+    public void collectData(String friendName) {
+        
+    }
+
+    @Override
+    public void genReport(String friendName) {
 
     }
 }

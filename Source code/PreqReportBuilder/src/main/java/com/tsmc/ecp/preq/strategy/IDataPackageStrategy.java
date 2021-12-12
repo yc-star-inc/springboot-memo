@@ -2,7 +2,9 @@ package com.tsmc.ecp.preq.strategy;
 
 public interface IDataPackageStrategy
 {
-    void connectTo(String friendName);
+    void getConfiguration(String friendName);
 
+    void collectData(String friendName);
 
+    void genReport(String friendName);
 }

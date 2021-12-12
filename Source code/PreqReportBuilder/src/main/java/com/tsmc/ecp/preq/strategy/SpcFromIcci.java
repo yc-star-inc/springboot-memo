@@ -3,11 +3,11 @@ package com.tsmc.ecp.preq.strategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SpcBySetting implements IDataPackageStrategy{
+public class SpcFromIcci implements IDataPackageStrategy{
 
     private static Logger logger;
     static {
-        logger = LoggerFactory.getLogger(SpcBySetting.class);
+        logger = LoggerFactory.getLogger(SpcFromIcci.class);
     }
 
     @Override

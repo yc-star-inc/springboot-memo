@@ -4,7 +4,7 @@ public class SocialMediaContext
 {
     ISocialMediaStrategy smStrategy;
 
-    public void setSocialmediaStrategy(ISocialMediaStrategy smStrategy)
+    public void setSocialMediaStrategy(ISocialMediaStrategy smStrategy)
     {
         this.smStrategy = smStrategy;
     }
